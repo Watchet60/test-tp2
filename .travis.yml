@@ -7,3 +7,5 @@ before_install:
 
 script:
   - npm test
+  - npm start
+  - npm newman www.getcollecti...

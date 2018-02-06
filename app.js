@@ -19,7 +19,11 @@ app
          * sous format json au client.(voir le controlleur .post)
          */
 
-        res.send('Not implemented');
+        var repository = new UserRepository(db);
+        var user = repository.findOneById(id);
+        res.header("Access-Control-Allow-Origin", "*");
+
+        res.send(user);
     })
 
     // Creation d'un utilisateur

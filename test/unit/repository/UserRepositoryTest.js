@@ -44,4 +44,31 @@ describe("UserRepository", function() {
         expect(f).toThrow('User object is missing information')
     });
 
+    it("should return existing user", function() {
+        var mockDb = jasmine.createSpyObj('db', ['get', 'find', 'value']);
+        mockDb.get.and.returnValue(mockDb);
+        mockDb.find.and.returnValue(mockDb);
+        mockDb.value.and.returnValue({
+            id: '28469',
+            firstname: 'Jon',
+            lastname: 'Snow',
+            birthday: '15-06-1023'
+        });
+
+        var repository = new UserRepository(mockDb);
+        var user = repository.findOneById('28469');
+        expect(user.id).toEqual('28469');
+        expect(user.firstname).toEqual('Jon');
+        expect(user.lastname).toEqual('Snow');
+        expect(user.birthday).toEqual('15-06-1023');
+    });
+
+    it("should throw exception id undefined", function() {
+        var repository = new UserRepository({});
+        var f = function()
+        {
+            repository.findOneById();
+        };
+        expect(f).toThrow('User id is undefined');
+    });
 });
