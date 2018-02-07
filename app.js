@@ -65,8 +65,13 @@ app
         /**
          * Implémenter le controlleur
          */
-
-        res.send('Not implemented');
+        var id = req.params.id;
+        var repository = new UserRepository(db);
+        var user = repository.findOneById(id);
+        repository.delete(id);
+        res.header("Access-Control-Allow-Origin", "*");
+        //res.send("User deleted");
+        res.send(user);
     });
 
 
