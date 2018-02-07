@@ -119,3 +119,34 @@ describe("Update", function() {
         expect(mockDb.write).toHaveBeenCalledTimes(1);
     });
 });
+
+describe("Delete", function() {
+    it("should delete existing user", function () {
+        var mockDb = jasmine.createSpyObj('db', ['get', 'push', 'write', 'remove', 'write']);
+        mockDb.get.and.returnValue(mockDb);
+        mockDb.push.and.returnValue(mockDb);
+        mockDb.remove.and.returnValue(mockDb);
+
+        var repository = new UserRepository(mockDb);
+        repository.create({
+            id: 1,
+            firstname: 'Jean',
+            lastname: 'Do',
+            birthday: '2000-01-01'
+        });
+
+        repository.delete(1);
+        expect(mockDb.remove).toHaveBeenCalledWith({
+            'id' : 1
+        });
+        expect(mockDb.write).toHaveBeenCalledTimes(2) // une fois pour le create et une fois pour le delete
+    });
+
+    it("should throw exception id undefined", function () {
+        var repository = new UserRepository({});
+        var f = function () {
+            repository.delete();
+        };
+        expect(f).toThrow('User id is undefined');
+    });
+});
