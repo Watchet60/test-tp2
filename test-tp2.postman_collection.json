@@ -1,0 +1,285 @@
+{
+	"info": {
+		"name": "test-tp2",
+		"_postman_id": "76aed613-7375-6bae-50ab-aaf21e3c560e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "484e926f-b2c7-43de-980a-ad6bf4f78c13",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Response should be okay', function () {",
+							"    pm.response.to.have.status(200)",
+							"    pm.response.to.have.status('OK')",
+							"});",
+							"",
+							"pm.test('Response should contain id', function () {",
+							"    pm.response.to.have.jsonBody('id')",
+							"});",
+							"",
+							"pm.test('Response should contain lastname and firstname', function () {",
+							"    pm.response.to.have.jsonBody('lastname')",
+							"    pm.response.to.have.jsonBody('firstname')",
+							"});",
+							"",
+							"var response = pm.response.json();",
+							"pm.environment.set('id', response.id)",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstname",
+							"value": "John",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Doe",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "2001-01-10",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "312d0d42-6e0c-416b-89c2-79e1c48bfb99",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f5016157-470f-4ebf-8707-ae2442edf44f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Response should be okay', function () {",
+							"    pm.response.to.have.status(200)",
+							"    pm.response.to.have.status('OK')",
+							"});",
+							"",
+							"pm.test('Response should contain id', function () {",
+							"    pm.response.to.have.jsonBody('id')",
+							"});",
+							"",
+							"pm.test('Response should contain lastname and firstname', function () {",
+							"    pm.response.to.have.jsonBody('lastname')",
+							"    pm.response.to.have.jsonBody('firstname')",
+							"});",
+							"",
+							"var response = pm.response.json();",
+							"pm.environment.set('id', response.id)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/user/29eeee5f-1745-4c68-b365-aff1f10a4759",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"29eeee5f-1745-4c68-b365-aff1f10a4759"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f2e5254-e914-416e-a1f8-2ae912861c2b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Response should be okay', function () {",
+							"    pm.response.to.have.status(200)",
+							"    pm.response.to.have.status('OK')",
+							"});",
+							"",
+							"pm.test('Response should contain id', function () {",
+							"    pm.response.to.have.jsonBody('id')",
+							"});",
+							"",
+							"pm.test('Response should contain lastname and firstname', function () {",
+							"    pm.response.to.have.jsonBody('lastname')",
+							"    pm.response.to.have.jsonBody('firstname')",
+							"});",
+							"",
+							"var response = pm.response.json();",
+							"pm.environment.set('id', response.id)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "29eeee5f-1745-4c68-b365-aff1f10a4759",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Maxime",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Vanza",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "1995-01-10",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afe7564d-858b-4db8-bf2a-dcf1ef34491e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Response should be okay', function () {",
+							"    pm.response.to.have.status(200)",
+							"    pm.response.to.have.status('OK')",
+							"});",
+							"",
+							"pm.test('Response should contain id', function () {",
+							"    pm.response.to.have.jsonBody('id')",
+							"});",
+							"",
+							"pm.test('Response should contain deleted', function () {",
+							"    pm.response.to.have.jsonBody('lastname')",
+							"    pm.response.to.have.jsonBody('firstname')",
+							"});",
+							"",
+							"var response = pm.response.json();",
+							"pm.environment.set('id', response.id)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/user/899d2159-a684-4426-8f15-e482de915006",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"899d2159-a684-4426-8f15-e482de915006"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
